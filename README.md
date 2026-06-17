@@ -16,7 +16,7 @@ IKEv2 representa una evolución significativa respecto a IKEv1. Su proceso de ne
 
 ## Topología
 
-![Topología de Red](IMAGEN1.png)
+![Topología de Red](Imagenes/IMAGEN1.png)
 
 > Topología implementada en PNETLab. Misma estructura que IKEv1 — R1 actúa como ISP, R2 y R3 son los peers VPN con IKEv2. SW1 y SW2 son los switches de acceso de cada LAN.
 
@@ -273,7 +273,7 @@ write memory
 
 ### 1. R2 — `show ip route`
 
-![R2 show ip route](IMAGEN5.png)
+![R2 show ip route](Imagenes/IMAGEN5.png)
 
 Tabla de enrutamiento de R2:
 - `C 10.15.99.0/24` — red LAN A conectada directamente en `Ethernet0/1`.
@@ -284,7 +284,7 @@ Tabla de enrutamiento de R2:
 
 ### 2. R2 — `show crypto ikev2 sa` — IKEv2 SA activa
 
-![R2 show crypto ikev2 sa](IMAGEN6.png)
+![R2 show crypto ikev2 sa](Imagenes/IMAGEN6.png)
 
 El comando `show crypto ikev2 sa` confirma que la **negociación IKEv2 fue exitosa**:
 - `Tunnel-id 1` — identificador único del túnel.
@@ -301,7 +301,7 @@ El comando `show crypto ikev2 sa` confirma que la **negociación IKEv2 fue exito
 
 ### 3. R2 — `show crypto session` y `show crypto ipsec sa`
 
-![R2 show crypto session y show crypto ipsec sa](IMAGEN7.png)
+![R2 show crypto session y show crypto ipsec sa](Imagenes/IMAGEN7.png)
 
 `show crypto session` muestra:
 - `Profile: PROF-1599` — perfil IKEv2 activo en la sesión.
@@ -320,7 +320,7 @@ El comando `show crypto ikev2 sa` confirma que la **negociación IKEv2 fue exito
 
 ### 4. R2 — `show running-config | section crypto`
 
-![R2 show running-config section crypto](IMAGEN8.png)
+![R2 show running-config section crypto](Imagenes/IMAGEN8.png)
 
 Confirma la configuración completa IKEv2 en R2:
 - `crypto ikev2 proposal PROP-1599` con `group 14`.
@@ -335,7 +335,7 @@ Confirma la configuración completa IKEv2 en R2:
 
 ### 5. R1 (ISP) — `show ip route`
 
-![R1 show ip route](IMAGEN9.png)
+![R1 show ip route](Imagenes/IMAGEN9.png)
 
 El ISP tiene rutas estáticas hacia ambas LANs privadas:
 - `S 10.15.99.0/24 via 200.1.15.2` — hacia LAN A a través de R2.
@@ -346,7 +346,7 @@ El ISP tiene rutas estáticas hacia ambas LANs privadas:
 
 ### 6. R3 — `show ip route`
 
-![R3 show ip route](IMAGEN10.png)
+![R3 show ip route](Imagenes/IMAGEN10.png)
 
 Tabla de enrutamiento de R3:
 - `C 192.168.99.0/24` — red LAN B conectada directamente en `Ethernet0/1`.
@@ -357,7 +357,7 @@ Tabla de enrutamiento de R3:
 
 ### 7. R3 — `show crypto ikev2 sa` y `show crypto session`
 
-![R3 show crypto ikev2 sa y show crypto session](IMAGEN11.png)
+![R3 show crypto ikev2 sa y show crypto session](Imagenes/IMAGEN11.png)
 
 Verificación desde el lado de R3:
 - `Status: READY` — IKEv2 SA activa en R3.
@@ -373,7 +373,7 @@ Verificación desde el lado de R3:
 
 ### 8. R3 — `show crypto ipsec sa`
 
-![R3 show crypto ipsec sa](IMAGEN12.png)
+![R3 show crypto ipsec sa](Imagenes/IMAGEN12.png)
 
 Desde R3 se confirma:
 - Crypto map `CMAP-1599v2` activo en `Ethernet0/0`.
@@ -388,7 +388,7 @@ Desde R3 se confirma:
 
 ### 9. R3 — `show running-config | section crypto`
 
-![R3 show running-config section crypto](IMAGEN2.png)
+![R3 show running-config section crypto](Imagenes/IMAGEN2.png))
 
 Confirma la configuración completa IKEv2 en R3:
 - `crypto ikev2 proposal PROP-1599` con `encryption aes-cbc-256`, `integrity sha256`, `group 14`.
@@ -404,7 +404,7 @@ Confirma la configuración completa IKEv2 en R3:
 
 ### VPC9 (LAN B) → VPC8 (LAN A)
 
-![VPC9 ping 10.15.99.3](IMAGEN3.png)
+![VPC9 ping 10.15.99.3](Imagenes/IMAGEN3.png)
 
 `ping 10.15.99.3` ejecutado desde VPC9 (`192.168.99.3`) hacia VPC8 (`10.15.99.3`):
 - 5 respuestas exitosas con TTL=62.
@@ -415,7 +415,7 @@ Confirma la configuración completa IKEv2 en R3:
 
 ### VPC8 (LAN A) → VPC9 (LAN B)
 
-![VPC8 ping 192.168.99.3](IMAGEN4.png)
+![VPC8 ping 192.168.99.3](Imagenes/IMAGEN4.png)
 
 `ping 192.168.99.3` ejecutado desde VPC8 (`10.15.99.3`) hacia VPC9 (`192.168.99.3`):
 - 4 respuestas exitosas con TTL=62.
