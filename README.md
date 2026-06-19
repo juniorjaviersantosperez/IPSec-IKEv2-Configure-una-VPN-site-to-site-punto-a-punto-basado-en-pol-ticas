@@ -4,10 +4,11 @@
 **Matrícula:** 2024-1599  
 **Plataforma:** PNETLab  
 
-Repositorio GitHub:
+Video demostrativo: https://www.youtube.com/watch?v=S8bjU_9bzJ4 
 
 
-Video demostrativo:
+Repositorio GitHub: https://github.com/juniorjaviersantosperez/IPSec-IKEv2-Configure-una-VPN-site-to-site-punto-a-punto-basado-en-pol-ticas.git 
+
 
 
 
